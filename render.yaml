@@ -1,0 +1,6 @@
+services:
+  - type: web
+    name: omnia-mvp
+    env: python
+    buildCommand: ""
+    startCommand: python app.py

@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Omnia Intelligence Explorer</title>
+  <style>
+    body {
+      background: linear-gradient(to right, #0d1b2a, #1b263b);
+      color: #fff;
+      font-family: 'Segoe UI', sans-serif;
+      text-align: center;
+      padding: 50px 20px;
+    }
+    h1 {
+      color: #00ffff;
+      font-size: 2.5rem;
+      margin-bottom: 10px;
+    }
+    p.description {
+      color: #ccc;
+      font-size: 1.1rem;
+      margin-bottom: 40px;
+    }
+    .button-group button {
+      background-color: #00ffff;
+      border: none;
+      padding: 15px 30px;
+      margin: 10px;
+      font-size: 1rem;
+      border-radius: 30px;
+      cursor: pointer;
+      transition: background 0.3s ease;
+    }
+    .button-group button:hover {
+      background-color: #00c9ff;
+    }
+    .output {
+      margin-top: 40px;
+      font-size: 1.2rem;
+      color: #ffffff;
+      padding: 20px;
+      background-color: #112233;
+      border-radius: 10px;
+      max-width: 600px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Omnia Intelligence Explorer</h1>
+  <p class="description">Explore the three foundational intelligences driving Omnia's decision system</p>
+
+  <div class="button-group">
+    <button onclick="showResponse('existential')">Existential Intelligence</button>
+    <button onclick="showResponse('emotional')">Emotional Intelligence</button>
+    <button onclick="showResponse('creative')">Creative Intelligence</button>
+  </div>
+
+  <div class="output" id="responseBox">
+    Click a button to see how Omnia responds.
+  </div>
+
+  <script>
+    function showResponse(type) {
+      fetch('/get_intelligence', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ type: type })
+      })
+      .then(response => response.json())
+      .then(data => {
+        document.getElementById('responseBox').textContent = data.response;
+      });
+    }
+  </script>
+
+</body>
+</html>
+ 
